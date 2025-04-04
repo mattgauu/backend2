@@ -1,5 +1,5 @@
 
-const SessionsDaoMongo = require('../dao/sessions.dao.js');
+const SessionsDaoMongo = require('../daos/MONGO/sessions.dao.js');
 const { createHash, isValidPassword } = require('../utils/hash.js');
 const { generateToken } = require('../utils/authToken.js');
 class SessionsController {

@@ -23,18 +23,25 @@ function authentication(req, res, next) {
     }
     next()
 }
-const authorization = role => {
+// middleware/auth.middlewares.js
+const authorization = (requiredRoles) => {
     return async (req, res, next) => {
-        if(!req.user) return res.status(401).send({error: 'Unathorized'})
-        console.log(req.user)
-        if(req.user.role !== role)  return res.status(401).send({error: 'No permissions'})
-        next()
-    }
-}
-
-module.exports = {
-    authentication,
+      if (!req.user) return res.status(401).send({ error: 'Unauthorized' });
+      
+      if (!requiredRoles.includes(req.user.role)) {
+        return res.status(403).send({ error: 'Insufficient permissions' });
+      }
+      
+      next();
+    };
+  };
+  
+  const canManageProducts = authorization(['admin']);
+  const canManageCart = authorization(['user', 'admin']);
+  
+  module.exports = {
     authorization,
-    authToken
-}
+    canManageProducts,
+    canManageCart
+  };
 
