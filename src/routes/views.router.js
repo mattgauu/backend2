@@ -1,15 +1,10 @@
-const { Router } = require('express')
+const { Router } = require('express');
+const viewsController = require('../controllers/views.controller.js');
 
-const router = Router()
+const router = Router();
 
-router.get('/', (req, res) => {
-    res.render('home', {})
-})
-router.get('/login', (req, res) => {
-    res.render('login', {})
-})
-router.get('/register', (req, res) => {
-    res.render('register', {})
-})
+router.get('/', viewsController.home);
+router.get('/login', viewsController.login);
+router.get('/register', viewsController.register);
 
-module.exports = router
+module.exports = router;
