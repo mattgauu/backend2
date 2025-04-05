@@ -1,6 +1,6 @@
 const { cartModel } = require('../MONGO/models/cart.model.js');
 
-class CartDao {
+class CartsDaoMongo {
   async createCart(cartData) {
     return await cartModel.create(cartData);
   }
@@ -18,4 +18,4 @@ class CartDao {
   }
 }
 
-module.exports = new CartDao();
+module.exports = CartsDaoMongo; // ✅ Ahora sí, exportás la clase

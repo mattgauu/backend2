@@ -1,6 +1,4 @@
-const { ticketModel } = require('../MONGO/models/ticket.model');
-
-class TicketDao {
+class TicketsDaoMongo {
   async createTicket(ticketData) {
     return await ticketModel.create(ticketData);
   }
@@ -14,4 +12,4 @@ class TicketDao {
   }
 }
 
-module.exports = new TicketDao();
+module.exports = TicketsDaoMongo; // ✅

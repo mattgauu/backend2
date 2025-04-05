@@ -2,7 +2,12 @@ const { productRepository } = require('../repositories');
 
 class ProductsService {
   async getProducts() {
-    return await productRepository.getProducts();
+    try {
+      return await productRepository.getProducts();
+    } catch (error) {
+      console.error('Error in products service:', error);
+      throw error;
+    }
   }
 
   async getProductById(id) {

@@ -17,8 +17,7 @@ const CartsService = new CartRepository(CartDao);
 
 
 module.exports = {
-  UsersService,
-  ProductsService, // Nombre corregido
-  CartsService,
-
+  userService: UsersService,
+  productService: ProductsService, // 👈 Este nombre sí lo vas a usar en tu controller
+  cartService: CartsService,
 };

@@ -23,6 +23,8 @@ switch (persistence) {
 
         const TicketsDaoMemory = require('./MONGO/tickets.dao')
         TicketsDao = TicketsDaoMemory
+
+        break;
        
     case 'FS':
         const UsersDaoFS = require('./MONGO/users.dao')
@@ -42,23 +44,23 @@ switch (persistence) {
         
         break;
    
-    default:
-        const UsersDaoMongo = require('./MONGO/users.dao')
-        UsersDao = UsersDaoMongo
-
-        const ProductDaoMongo = require('./MONGO/products.dao')
-        ProductsDao = ProductDaoMongo
-
-        const sessionsDaoMongo = require('./MONGO/sessions.dao')
-        SessionsDao = sessionsDaoMongo
-
-        const CartsDaoMongo = require('./MONGO/carts.dao')
-        CartsDao = CartsDaoMongo
-
-        const TicketsDaoMongo = require('./MONGO/tickets.dao')
-        TicketsDao = TicketsDaoMongo
-
+        default:
+            const UsersDaoMongo = require('./MONGO/users.dao')
+            UsersDao = new UsersDaoMongo()
+        
+            const ProductDaoMongo = require('./MONGO/products.dao')
+            ProductsDao = new ProductDaoMongo()
+        
+            const sessionsDaoMongo = require('./MONGO/sessions.dao')
+            SessionsDao = new sessionsDaoMongo()
+        
+            const CartsDaoMongo = require('./MONGO/carts.dao')
+            CartsDao = new CartsDaoMongo()
+        
+            const TicketsDaoMongo = require('./MONGO/tickets.dao')
+            TicketsDao = new TicketsDaoMongo()
         break;
+        
 }
 
 // daos/factory.js

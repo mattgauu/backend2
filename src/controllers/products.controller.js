@@ -1,8 +1,10 @@
-const { prodcutService } = require("../services");
+const { productService } = require("../services");
+
 
 class ProductController {
     constructor(){
-        this.service = prodcutService
+        this.service = productService;
+
     }
 
 
@@ -50,7 +52,7 @@ class ProductController {
             if (!deletedProduct) {
                 return res.status(404).json({ message: 'Product not found' })
             }
-            res.status(204).send(); 
+            res.status(204).send(); // 204 No Content (successful deletion)
         } catch (error) {
             next(error)
         }

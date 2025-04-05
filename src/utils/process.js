@@ -5,7 +5,7 @@ const program = new Command()
 
 program
     
-    .option('--mode <mode>', 'modo de ejecución del entorno del server', 'production')
+    .option('--mode <mode>', 'modo de ejecución del entorno del server', 'dev')
     .parse()
 
 
