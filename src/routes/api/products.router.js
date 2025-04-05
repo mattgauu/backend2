@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { productModel } = require('../../models/products.model');
+const { productModel } = require('../../daos/MONGO/models/products.model');
 const { passportCall } = require('../../middleware/passportCall');
 const { canManageProducts } = require('../../middleware/auth.middlewares');
 

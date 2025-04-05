@@ -1,4 +1,4 @@
-const { cartModel } = require('../../models/cart.model');
+const { cartModel } = require('../MONGO/models/cart.model.js');
 
 class CartDao {
   async createCart(cartData) {

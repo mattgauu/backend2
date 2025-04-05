@@ -1,6 +1,6 @@
 
 const { UserDto } = require("../dtos/UserDTO.js");
-// Nota:          ^ minúsculas "dtos" en lugar de "Dtos"
+
 const { usersService } = require("../services/index.js")
 
 class UserController {

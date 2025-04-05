@@ -1,4 +1,4 @@
-const { ticketModel } = require('../../models/ticket.model');
+const { ticketModel } = require('../MONGO/models/ticket.model');
 
 class TicketDao {
   async createTicket(ticketData) {

@@ -1,18 +1,19 @@
-const { cartDao } = require('../daos/MONGO');
-const CartDTO = require('../dtos/CartDTO');
-
+// src/repositories/carts.repository.js
 class CartRepository {
-  async getCart(id) {
-    const cart = await cartDao.getCartById(id);
-    return cart ? new CartDTO(cart) : null;
+  constructor(dao) {
+    this.dao = dao;
   }
-  
+
   async createCart(cartData) {
-    const cart = await cartDao.createCart(cartData);
-    return new CartDTO(cart);
+    return await this.dao.createCart(cartData);
   }
-  
-  // ... otros métodos
+
+  async getCart(id) {
+    return await this.dao.getCartById(id);
+  }
+
+  // otros métodos...
 }
 
-module.exports = new CartRepository();
+// Exporta la clase directamente
+module.exports = CartRepository;

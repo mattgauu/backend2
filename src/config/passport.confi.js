@@ -1,6 +1,6 @@
 const passport = require('passport');
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
-const { userModel } = require('../models/user.model.js');
+const { userModel } = require('../daos/MONGO/models/user.model.js');
 const { PRIVATE_KEY } = require('../utils/authToken.js');
 
 const initializePassport = () => {

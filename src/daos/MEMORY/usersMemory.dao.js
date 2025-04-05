@@ -1,7 +1,7 @@
 //  MODELO O PERSISTENCIA
-const { userModel } = require('../MONGO/models/user.model.js');
+const { userModel } = require('../../models/user.model.js');
 
-class UsersDaoMongo {
+class UsersDaoMemory {
     constructor(){
         this.userModel = userModel
     }
@@ -13,5 +13,5 @@ class UsersDaoMongo {
     delete = async uid => 'delete user'
 }
 
-module.exports = UsersDaoMongo
+module.exports = UsersDaoMemory
 

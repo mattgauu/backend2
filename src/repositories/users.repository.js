@@ -1,4 +1,4 @@
-const { UserDto } = require("../Dtos/users.dto")
+const { UserDto } = require("../dtos/UserDTO")
 
 
 class UserRepository {

@@ -5,6 +5,7 @@ const userCollection = 'users'
 const userSchema = new Schema({
     first_name: String,
     last_name: String,
+    full_name: String,
     age: Number,
     email: {
         type: String,
