@@ -26,7 +26,13 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(logger('dev'))
 app.use(cookieParser('CoderPalab@S3cret@'))
-app.use(cors())
+
+
+app.use(cors({
+  origin: ['http://127.0.0.1:5500', 'http://localhost:5500'], // Agregá los orígenes desde donde estés testeando el frontend
+  credentials: true
+}));
+
 
 app.engine('hbs', handlebars.engine({
     extname: '.hbs'

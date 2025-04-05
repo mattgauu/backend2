@@ -1,34 +1,65 @@
-
 const { UserDto } = require("../dtos/UserDTO.js");
+const { userService } = require("../services/index.js"); // 👈 correcto
 
-const { usersService } = require("../services/index.js")
 
 class UserController {
     constructor(){
-        this.service = usersService
+        this.service = userService;
+
     }
     
-    createUser = async (req, res)=>{
-        const { body } = req
-        const result = await this.usersService(body)
-        
-        res.send({status: 'success', payload: result})
+    getUsers = async (req, res) => {
+        try {
+            const users = await this.service.getUsers();
+            res.send({ status: 'success', payload: users });
+        } catch (error) {
+            res.status(500).send({ status: 'error', message: error.message });
+        }
     }
-    getUsers = async (req, res)=>{
-        const users = await this.service.get()
-        res.send({status: 'success', paylad: users})
+
+    createUser = async (req, res) => {
+        try {
+            const result = await this.service.createUser(req.body);
+            res.send({ status: 'success', payload: result });
+        } catch (error) {
+            res.status(500).send({ status: 'error', message: error.message });
+        }
     }
-    getUser = (req, res)=>{
-        res.send(' get user')
+
+    getUser= async (req, res) => {
+        const {uid} = req.params
+        try {
+            const user = await this.service.getUser({_id:uid})
+            res.send({status: 'success', payload: user})
+        } catch (error) {
+            console.log(error)
+        }
     }
-    updateUser = (req, res)=>{
-        res.send('update user')
+
+    updateUser= async (req, res, next) => {
+        try {
+            const updatedUser = await this.service.updateUser(req.params.uid, req.body)
+            if (!updatedUser) {
+                return res.status(404).json({ message: 'User not found' })
+            }
+            res.status(200).json(updatedUser);
+        } catch (error) {
+            next(error)
+        }
     }
-    deleteUser = (req, res)=>{
-        res.send('delete user')
+    deleteUser = async (req, res, next) => {
+        try {
+            const deletedUser = await this.service.deleteUser(req.params.uid);
+            if (!deletedUser) {
+                return res.status(404).json({ message: 'User not found' })
+            }
+            res.status(204).send(); // 204 No Content (successful deletion)
+        } catch (error) {
+            next(error)
+        }
     }
 }
 
 module.exports = {
     UserController
-}
+};

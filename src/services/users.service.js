@@ -7,7 +7,7 @@ class UsersService {
     return users.map(user => new UserDTO(user));
   }
 
-  async getUserById(id) {
+  async getUser(id) {
     const user = await userDao.getBy({ _id: id });
     return user ? new UserDTO(user) : null;
   }
