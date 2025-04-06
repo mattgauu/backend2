@@ -2,7 +2,7 @@ const { UserDto } = require("../dtos/UserDTO")
 
 
 class UserRepository {
-    // inección de dependencias
+    
     constructor(dao) {
         this.dao = dao
     }
@@ -31,5 +31,3 @@ class UserRepository {
 module.exports = {
     UserRepository
 }
-
-// new UserRepository(objUserDao)

@@ -10,7 +10,7 @@ class CartsDaoMongo {
     const cart = await cartModel.findById(id).populate('products.product');
     if (!cart) return null;
   
-    // Filtra productos que no fueron populados (porque ya no existen)
+    
     cart.products = cart.products.filter(p => p.product !== null);
     return cart;
   }

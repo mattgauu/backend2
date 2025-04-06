@@ -14,11 +14,11 @@ const TicketRepository = require("../repositories/ticket.repository");
 const UsersService = new UserRepository(UsersDao);
 const ProductsService = new ProductRepository(ProductsDao);
 const CartsService = new CartRepository(CartsDao);
-const TicketsService = new TicketRepository(TicketsDao); // 👈 importante
+const TicketsService = new TicketRepository(TicketsDao); 
 
 module.exports = {
   userService: UsersService,
   productService: ProductsService,
   cartService: CartsService,
-  ticketService: TicketsService, // 👈 esto también, aunque el archivo se llame `tickets`, el servicio sigue siendo `ticketService`
+  ticketService: TicketsService,
 };

@@ -1,4 +1,4 @@
-//  MODELO O PERSISTENCIA
+
 const { userModel } = require('../MONGO/models/user.model.js');
 
 class UsersDaoMongo {

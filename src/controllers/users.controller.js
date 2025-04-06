@@ -1,5 +1,5 @@
 const { UserDto } = require("../dtos/UserDTO.js");
-const { userService } = require("../services/index.js"); // 👈 correcto
+const { userService } = require("../services/index.js");
 
 
 class UserController {
@@ -46,7 +46,7 @@ class UserController {
             if (!deletedUser) {
                 return res.status(404).json({ message: 'User not found' })
             }
-            res.status(204).send(); // 204 No Content (successful deletion)
+            res.status(204).send();
         } catch (error) {
             next(error)
         }

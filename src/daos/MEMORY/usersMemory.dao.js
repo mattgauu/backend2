@@ -1,4 +1,4 @@
-//  MODELO O PERSISTENCIA
+
 const { userModel } = require('../../models/user.model.js');
 
 class UsersDaoMemory {

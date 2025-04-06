@@ -12,7 +12,7 @@ class ProductController {
         try {
       
             const result = await this.service.createProduct(req.body)
-            res.status(201).json({status: 'success', payload: result}); // 201 Created
+            res.status(201).json({status: 'success', payload: result});
         } catch (error) {
             next(error);
         }
@@ -52,7 +52,7 @@ class ProductController {
             if (!deletedProduct) {
                 return res.status(404).json({ message: 'Product not found' })
             }
-            res.status(204).send(); // 204 No Content (successful deletion)
+            res.status(204).send();
         } catch (error) {
             next(error)
         }
