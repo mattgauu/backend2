@@ -1,6 +1,7 @@
 const SessionsDaoMongo = require('../daos/MONGO/sessions.dao.js');
 const { createHash, isValidPassword } = require('../utils/hash.js');
 const { generateToken } = require('../utils/authToken.js');
+const { token } = require('morgan');
 
 class SessionsController {
   constructor() {
@@ -53,15 +54,16 @@ class SessionsController {
     const token = generateToken({
       id: userFound._id,
       email: userFound.email,
-      role: userFound.role
+      role: userFound.role,
+      
     });
 
     res
-      .cookie('coderCookieToken', token, {
-        maxAge: 60 * 60 * 1000,
-        httpOnly: true
-      })
-      .send({ status: 'success', message: 'Logged successfully' });
+    .cookie('coderCookieToken', token, {
+      maxAge: 60 * 60 * 1000,
+      httpOnly: true
+    })
+    .send({ status: 'success', message: 'Logged successfully', token });
   };
 
   logout = (req, res) => {

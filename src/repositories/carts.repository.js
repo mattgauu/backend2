@@ -1,4 +1,3 @@
-// src/repositories/carts.repository.js
 class CartRepository {
   constructor(dao) {
     this.dao = dao;
@@ -12,8 +11,13 @@ class CartRepository {
     return await this.dao.getCartById(id);
   }
 
-  // otros métodos...
+  async updateCart(id, updateData) {
+    return await this.dao.updateCart(id, updateData);
+  }
+
+  async deleteCart(id) {
+    return await this.dao.deleteCart(id);
+  }
 }
 
-// Exporta la clase directamente
 module.exports = CartRepository;

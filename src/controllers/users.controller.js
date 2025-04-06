@@ -17,14 +17,7 @@ class UserController {
         }
     }
 
-    createUser = async (req, res) => {
-        try {
-            const result = await this.service.createUser(req.body);
-            res.send({ status: 'success', payload: result });
-        } catch (error) {
-            res.status(500).send({ status: 'error', message: error.message });
-        }
-    }
+    
 
     getUser= async (req, res) => {
         const {uid} = req.params

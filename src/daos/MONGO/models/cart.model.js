@@ -19,4 +19,8 @@ const cartSchema = new Schema({
   }
 });
 
-module.exports = model('Cart', cartSchema);
+const cartModel = model('carts', cartSchema)
+
+module.exports = {
+    cartModel
+}

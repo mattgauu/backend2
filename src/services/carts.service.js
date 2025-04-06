@@ -1,33 +1,25 @@
-const { cartDao, productDao } = require('../daos/MONGO');
-const CartDTO = require('../dtos/CartDTO');
+const cartsDao = require('../daos/factory');
+const CartRepository = require('../repositories/carts.repository');
 
-class CartsService {
-  async createCart(userId) {
-    const newCart = await cartDao.createCart({ user: userId, products: [] });
-    return new CartDTO(newCart);
+const cartsDao = new CartsDaoMongo();
+const cartRepository = new CartRepository(CartsDao);
+
+class CartService {
+  async createCart(cartData) {
+    return await cartRepository.createCart(cartData);
   }
 
   async getCart(id) {
-    const cart = await cartDao.getCartById(id);
-    return cart ? new CartDTO(cart) : null;
+    return await cartRepository.getCart(id);
   }
 
-  async addProductToCart(cartId, productId, quantity = 1) {
-    const product = await productDao.getBy({ _id: productId });
-    if (!product) throw new Error('Product not found');
-    
-    return await cartDao.updateCart(cartId, {
-      $push: { products: { product: productId, quantity } }
-    });
+  async updateCart(id, updateData) {
+    return await cartRepository.updateCart(id, updateData);
   }
 
-  async purchaseCart(cartId, userEmail) {
-    const cart = await cartDao.getCartById(cartId);
-    if (!cart) throw new Error('Cart not found');
-    
-    // Implementar lógica de compra según consignas
-    // ...
+  async deleteCart(id) {
+    return await cartRepository.deleteCart(id);
   }
 }
 
-module.exports = new CartsService();
+module.exports = new CartService();

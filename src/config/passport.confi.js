@@ -7,6 +7,7 @@ const initializePassport = () => {
     // Configuración de las opciones para JwtStrategy
     const options = {
         jwtFromRequest: ExtractJwt.fromExtractors([
+            ExtractJwt.fromAuthHeaderAsBearerToken(),
             (req) => {
                 let token = null;
                 if (req && req.cookies) {
