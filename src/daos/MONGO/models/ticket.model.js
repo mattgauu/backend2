@@ -1,29 +1,25 @@
-// models/ticket.model.js
 const { Schema, model } = require('mongoose');
 
 const ticketSchema = new Schema({
-  code: { 
-    type: String, 
-    unique: true, 
-    default: () => Math.random().toString(36).substring(2, 10) 
+  code: {
+    type: String,
+    required: true,
+    unique: true
   },
-  purchase_datetime: { 
-    type: Date, 
-    default: Date.now 
+  purchase_datetime: {
+    type: Date,
+    default: Date.now
   },
-  amount: { 
-    type: Number, 
-    required: true 
+  amount: {
+    type: Number,
+    required: true
   },
-  purchaser: { 
-    type: String, 
-    required: true 
-  },
-  products: [{
-    product: { type: Schema.Types.ObjectId, ref: 'products' },
-    quantity: Number,
-    price: Number
-  }]
+  purchaser: {
+    type: String,
+    required: true
+  }
 });
 
-module.exports = model('Ticket', ticketSchema);
+const ticketModel = model('tickets', ticketSchema);
+
+module.exports = { ticketModel };

@@ -1,15 +1,20 @@
+const { ticketModel } = require('./models/ticket.model');
+const crypto = require('crypto');
+
 class TicketsDaoMongo {
-  async createTicket(ticketData) {
-    return await ticketModel.create(ticketData);
+  async createTicket({ amount, purchaser }) {
+    const code = crypto.randomUUID();
+    const ticket = await ticketModel.create({
+      code,
+      amount,
+      purchaser
+    });
+    return ticket;
   }
 
   async getTicketById(id) {
-    return await ticketModel.findById(id).populate('products.product');
-  }
-
-  async getTicketsByPurchaser(email) {
-    return await ticketModel.find({ purchaser: email }).populate('products.product');
+    return await ticketModel.findById(id);
   }
 }
 
-module.exports = TicketsDaoMongo; // ✅
+module.exports = TicketsDaoMongo;

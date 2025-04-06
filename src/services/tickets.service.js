@@ -1,14 +1,11 @@
-// services/ticket.service.js
-const { ticketDao } = require('../daos');
-
 class TicketService {
-  async createTicket(ticketData) {
-    return await ticketDao.create(ticketData);
+  constructor(ticketRepository) {
+    this.ticketRepository = ticketRepository;
   }
-  
-  async getTicketById(id) {
-    return await ticketDao.getBy({ _id: id });
+
+  async generateTicket({ amount, purchaser }) {
+    return await this.ticketRepository.createTicket({ amount, purchaser });
   }
 }
 
-module.exports = new TicketService();
+module.exports = TicketService;
